@@ -45,13 +45,9 @@
             </div>
             <div class="navbar-content">
                 <ul>
-                    <li>
-                        <img src="./img/avatar_1.jpg" alt="">
-                        <span>Michele</span>
-                    </li>
-                    <li>
-                        <img src="./img/avatar_1.jpg" alt="">
-                        <span>Michele</span>
+                    <li v-for="element in yourPropNameHere">
+                        <img :src=" './img/avatar' + element.avatar + '.jpg'" alt="">
+                        <span>{{ element.name }}</span>
                     </li>
                 </ul>
             </div>
