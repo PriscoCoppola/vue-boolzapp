@@ -166,9 +166,68 @@ body {
 
 .main-content {
     flex-grow: 1;
+    padding: 30px 70px 0 70px;
     background-image: url(../img/mine.jpg);
+    overflow-y: auto;
+}
+
+.main-content .sent-direction {
+    display: flex;
+    justify-content: end;
+    margin: 10px 0;
+}
+
+.main-content .received-direction {
+    display: flex;
+    justify-content: start;
+    margin: 10px 0;
+}
+
+.main-content .sent-message {
+    width: 250px;
+    padding: 15px;
+    font-size: 14px;
+    background-color: #ddfabf;
+    border-radius: 10px;
+    position: relative;
+}
+
+.main-content .sent-message span,
+.main-content .received-message span {
+    font-size: 10px;
+    color: rgba(0, 0, 0, .5);
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+}
+
+.main-content .received-message {
+    width: 250px;
+    padding: 15px;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
 }
 
 .main-footer {
+    display: flex;
+    align-items: center;
+    padding: 5px;
     background-color: #f4f0ed;
+}
+
+.main-footer input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 5px;
+    color: rgba(0,0,0, .7);
+}
+
+.main-footer i {
+    padding: 0 20px;
+    color: #bababa;
+    font-size: 20px;
 }
