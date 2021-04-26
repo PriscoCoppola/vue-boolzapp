@@ -53,7 +53,7 @@
             <div class="navbar-content">
                 <ul>
                     <li 
-                        v-for="(element, index) in yourPropNameHere"
+                        v-for="(element, index) in contacts"
                         @click="chat(index)"
                         :class="{active: index == newIndex}"
                         v-show="element.visible"
@@ -69,9 +69,9 @@
         <main class="main">
             <div class="main-header">
                 <div class="user">
-                    <img :src="`./img/avatar${newPhoto}.jpg`" alt="Avatar Chat">
+                    <img :src="`./img/avatar${contacts[newIndex].avatar}.jpg`" alt="Avatar Chat">
                     <div class="text">
-                        <div>{{ newName }}</div>
+                        <div>{{ contacts[newIndex].name }}</div>
                         <div>Ultimo accesso oggi alle 10.35</div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="main-content" >
-                <div v-for="element in newMessages">
+                <div v-for="element in contacts[newIndex].messages">
                     <div 
                         class="sent-direction"  
                         v-if="element.status == 'sent'"

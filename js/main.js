@@ -5,7 +5,7 @@
 const root = new Vue({
     el: '#root',
     data: {
-        yourPropNameHere: [
+        contacts: [
             {
                 name: 'Michele',
                 avatar: '_1',
@@ -94,38 +94,16 @@ const root = new Vue({
             name: 'Prisco',
             avatar: '_7'
         },
-        newName: 'Michele',
-        newPhoto: '_1',
-        newMessages: [
-            {
-                date: '10/01/2020 15:30:55',
-                message: 'Hai portato a spasso il cane?',
-                status: 'sent'
-            },
-            {
-                date: '10/01/2020 15:50:00',
-                message: 'Ricordati di dargli da mangiare',
-                status: 'sent'
-            },
-            {
-                date: '10/01/2020 16:15:22',
-                message: 'Tutto fatto!',
-                status: 'received'
-            }
-        ],
-        newMessage: '',
         newIndex: 0,
+        newMessage: '',
         userFilter: '',
     },
     methods: {
         chat (index) {
-            this.newName = this.yourPropNameHere[index].name
-            this.newPhoto = this.yourPropNameHere[index].avatar
-            this.newMessages = this.yourPropNameHere[index].messages
             this.newIndex = index
         },
         addMessage() {
-            this.newMessages.push({
+            this.contacts[this.newIndex].messages.push({
                 date: '10/01/2020 15:30:55',
                 message: this.newMessage,
                 status: 'sent'
@@ -133,7 +111,7 @@ const root = new Vue({
 
             if (this.newMessage.toLowerCase() === 'come va?') {
                 setTimeout(() => {
-                    this.newMessages.push({
+                    this.contacts[this.newIndex].messages.push({
                         date: '10/01/2020 15:30:55',
                         message: 'Bene tu?',
                         status: 'received'
@@ -141,7 +119,7 @@ const root = new Vue({
                 }, 1000);
             } else {
                 setTimeout(() => {
-                    this.newMessages.push({
+                    this.contacts[this.newIndex].messages.push({
                         date: '10/01/2020 15:30:55',
                         message: 'Ok',
                         status: 'received'
@@ -151,7 +129,7 @@ const root = new Vue({
             this.newMessage = '';
         },
         userFiltered() {
-            this.yourPropNameHere.forEach((element) => {
+            this.contacts.forEach((element) => {
                if (element.name.toLowerCase().includes(this.userFilter)) {
                    element.visible = true
                } else {
