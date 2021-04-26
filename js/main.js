@@ -131,16 +131,25 @@ const root = new Vue({
                 status: 'sent'
             })
 
-            this.newMessage = ''
-
-            setTimeout(() => {
-                this.newMessages.push({
-                    date: '10/01/2020 15:30:55',
-                    message: 'Ok',
-                    status: 'received'
-                })
-            }, 1000)
-        }, 
+            if (this.newMessage.toLowerCase() === 'come va?') {
+                setTimeout(() => {
+                    this.newMessages.push({
+                        date: '10/01/2020 15:30:55',
+                        message: 'Bene tu?',
+                        status: 'received'
+                    })
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    this.newMessages.push({
+                        date: '10/01/2020 15:30:55',
+                        message: 'Ok',
+                        status: 'received'
+                    })
+                }, 1000);
+            }
+            this.newMessage = '';
+        },
         userFiltered() {
             this.yourPropNameHere.forEach((element) => {
                if (element.name.toLowerCase().includes(this.userFilter)) {
