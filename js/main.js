@@ -90,6 +90,10 @@ const root = new Vue({
                 ],
             },
         ],
+        user: {
+            name: 'Prisco',
+            avatar: '_7'
+        },
         newName: 'Michele',
         newPhoto: '_1',
         newMessages: [
@@ -111,7 +115,7 @@ const root = new Vue({
         ],
     },
     methods: {
-        user (index) {
+        chat (index) {
             this.newName = this.yourPropNameHere[index].name
             this.newPhoto = this.yourPropNameHere[index].avatar
             this.newMessages = this.yourPropNameHere[index].messages   

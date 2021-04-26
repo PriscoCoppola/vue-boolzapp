@@ -142,7 +142,8 @@ body {
 
 .navbar-content {
     flex-grow: 1;
-    background-color: #fff
+    background-color: #fff;
+    overflow: auto;
 }
 
 .navbar-content li {
