@@ -90,5 +90,31 @@ const root = new Vue({
                 ],
             },
         ],
-    }
+        newName: 'Michele',
+        newPhoto: '_1',
+        newMessages: [
+            {
+                date: '10/01/2020 15:30:55',
+                message: 'Hai portato a spasso il cane?',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 15:50:00',
+                message: 'Ricordati di dargli da mangiare',
+                status: 'sent'
+            },
+            {
+                date: '10/01/2020 16:15:22',
+                message: 'Tutto fatto!',
+                status: 'received'
+            }
+        ],
+    },
+    methods: {
+        user (index) {
+            this.newName = this.yourPropNameHere[index].name
+            this.newPhoto = this.yourPropNameHere[index].avatar
+            this.newMessages = this.yourPropNameHere[index].messages   
+            } 
+    },
 });

@@ -45,7 +45,8 @@
             </div>
             <div class="navbar-content">
                 <ul>
-                    <li v-for="element in yourPropNameHere">
+                    <li v-for="(element, index) in yourPropNameHere"
+                    @click="user(index)">
                         <img :src=" './img/avatar' + element.avatar + '.jpg'" alt="">
                         <span>{{ element.name }}</span>
                     </li>
@@ -57,9 +58,9 @@
         <main class="main">
             <div class="main-header">
                 <div class="user">
-                    <img src="./img/avatar_1.jpg" alt="Avatar 1">
+                    <img :src="'./img/avatar' + newPhoto + '.jpg'" alt="Avatar">
                     <div class="text">
-                        <div>Michele</div>
+                        <div>{{ newName }}</div>
                         <div>Ultimo accesso oggi alle 10.35</div>
                     </div>
                 </div>
@@ -69,33 +70,19 @@
                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                 </div>
             </div>
-            <div class="main-content">
-                <div class="sent-direction">
-                    <div class="sent-message">
-                        <div>Messaggio inviato</div>
-                        <span>10/01/2021 15:50:00</span>
-                    </div>
-                </div>
-                <div class="received-direction">
-                    <div class="received-message">
-                        <div class="message">
-                            Messaggio ricevuto
+            <div class="main-content" >
+                <div v-for="element in newMessages">
+                    <div class="sent-direction"  v-if="element.status == 'sent'">
+                        <div class="sent-message">
+                            <div>{{element.message }}</div>
+                            <span>10/01/2021 15:50:00</span>
                         </div>
-                        <span>10/01/2021 15:50:00</span>
                     </div>
-                </div>
-                <div class="sent-direction">
-                    <div class="sent-message">
-                        <div>Messaggio inviato</div>
-                        <span>10/01/2021 15:50:00</span>
-                    </div>
-                </div>
-                <div class="received-direction">
-                    <div class="received-message">
-                        <div class="message">
-                            Messaggio ricevuto
+                    <div class="received-direction" v-if="element.status == 'received'">
+                        <div class="received-message">
+                            <div>{{element.message }}</div>
+                            <span>10/01/2021 15:50:00</span>
                         </div>
-                        <span>10/01/2021 15:50:00</span>
                     </div>
                 </div>
             </div>
