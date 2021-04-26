@@ -131,7 +131,7 @@ const root = new Vue({
                 status: 'sent'
             })
 
-            this.newMessage = 'Michele'
+            this.newMessage = ''
 
             setTimeout(() => {
                 this.newMessages.push({
