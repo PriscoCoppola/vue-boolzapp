@@ -113,12 +113,42 @@ const root = new Vue({
                 status: 'received'
             }
         ],
+        newMessage: '',
+        newIndex: 0,
+        userFilter: '',
     },
     methods: {
         chat (index) {
             this.newName = this.yourPropNameHere[index].name
             this.newPhoto = this.yourPropNameHere[index].avatar
-            this.newMessages = this.yourPropNameHere[index].messages   
-            } 
+            this.newMessages = this.yourPropNameHere[index].messages
+            this.newIndex = index
+        },
+        addMessage() {
+            this.newMessages.push({
+                date: '10/01/2020 15:30:55',
+                message: this.newMessage,
+                status: 'sent'
+            })
+
+            this.newMessage = 'Michele'
+
+            setTimeout(() => {
+                this.newMessages.push({
+                    date: '10/01/2020 15:30:55',
+                    message: 'Ok',
+                    status: 'received'
+                })
+            }, 1000)
+        }, 
+        userFiltered() {
+            this.yourPropNameHere.forEach((element) => {
+               if (element.name.toLowerCase().includes(this.userFilter)) {
+                   element.visible = true
+               } else {
+                   element.visible = false
+               }
+            })
+        }
     },
 });

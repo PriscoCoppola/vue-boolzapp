@@ -41,13 +41,22 @@
             </div>
             <div class="navbar-search">
                 <div class="icon"><a href="#"><i class="fas fa-search"></i></a></div>
-                <div class="bar"><input type="text" placeholder="Cerca o inizia una nuova chat"></div>
+                <div class="bar">
+                    <input 
+                        type="text" 
+                        placeholder="Cerca o inizia una nuova chat"
+                        v-model="userFilter"
+                        @keyup="userFiltered"
+                    >
+                </div>
             </div>
             <div class="navbar-content">
                 <ul>
                     <li 
                         v-for="(element, index) in yourPropNameHere"
                         @click="chat(index)"
+                        :class="{active: index == newIndex}"
+                        v-show="element.visible"
                     >
                         <img :src="`./img/avatar${element.avatar}.jpg`" :alt="`avatar${element.avatar}`">
                         <span>{{ element.name }}</span>
@@ -96,7 +105,12 @@
             </div>
             <div class="main-footer">
                 <i class="far fa-smile"></i>
-                <input type="text" placeholder="Scrivi un messaggio">
+                <input 
+                    type="text" 
+                    placeholder="Scrivi un messaggio"
+                    v-model="newMessage"
+                    @keyup.enter="addMessage"    
+                >
                 <i class="fas fa-microphone"></i>
             </div>
         </main>
