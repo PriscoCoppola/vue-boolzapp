@@ -2,6 +2,9 @@
 *   BOOLZAPP
 **********************************************/
 
+// Day JS Locale
+dayjs.locale('it');
+
 const root = new Vue({
     el: '#root',
     data: {
@@ -97,14 +100,16 @@ const root = new Vue({
         newIndex: 0,
         newMessage: '',
         userFilter: '',
+        access: '',
     },
     methods: {
         chat (index) {
             this.newIndex = index
+            console.log(dayjs().format('DD/MM/YYYY'))
         },
         addMessage() {
             this.contacts[this.newIndex].messages.push({
-                date: '10/01/2020 15:30:55',
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 message: this.newMessage,
                 status: 'sent'
             })
@@ -112,18 +117,20 @@ const root = new Vue({
             if (this.newMessage.toLowerCase() === 'come va?') {
                 setTimeout(() => {
                     this.contacts[this.newIndex].messages.push({
-                        date: '10/01/2020 15:30:55',
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         message: 'Bene tu?',
-                        status: 'received'
+                        status: 'received',
                     })
+                    this.contacts[this.newIndex].access = `Ultimo accesso oggi alle ${dayjs().format('HH:mm')}`
                 }, 1000);
             } else {
                 setTimeout(() => {
                     this.contacts[this.newIndex].messages.push({
-                        date: '10/01/2020 15:30:55',
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         message: 'Ok',
                         status: 'received'
                     })
+                    this.contacts[this.newIndex].access = `Ultimo accesso oggi alle ${dayjs().format('HH:mm')}`
                 }, 1000);
             }
             this.newMessage = '';
