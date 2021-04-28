@@ -15,143 +15,188 @@
     <!-- Vue JS -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 </head>
-<body>
+<body
     
-    <!-- VUE -->
-    <div id="root" class="container">
-
-        <!-- NAVBAR -->
-        <aside class="navbar">
-            
-            <!-- Navbar-Header -->
-            <div class="navbar-header">
-                <div class="user">
-                    <img :src="`./img/avatar${user.avatar}.jpg`" alt="Avatar User">
-                    <span>{{ user.name }}</span>
+>
+    
+    <div 
+        id="root"
+        class="body"
+        :class="{ darkBody:darkModeVisible === true }">
+    >
+        <div class="container">
+            <!-- DARK MODE -->
+            <i
+                class="fas fa-adjust"
+                @click="darkMode"
+            ></i>
+            <!-- NAVBAR -->
+            <aside
+                class="navbar"
+                :class="{ darkBorder:darkModeVisible === true }"
+            >
+        
+                <!-- Navbar-Header -->
+                <div
+                    class="navbar-header"
+                    :class="{ backgroundColor:darkModeVisible === true }"
+                >
+                    <div class="user">
+                        <img :src="`./img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                        <span>{{ user.name }}</span>
+                    </div>
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-circle-notch"></i></a>
+                        <a href="#"><i class="fas fa-comment-alt"></i></a>
+                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                    </div>
                 </div>
-                <div class="icons">
-                    <a href="#"><i class="fas fa-circle-notch"></i></a>
-                    <a href="#"><i class="fas fa-comment-alt"></i></a>
-                    <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                </div>
-            </div>
-            
-            <!-- Navbar-Notification -->
-            <div class="navbar-notification">
-                <div class="circle"><i class="fas fa-bell-slash"></i></div>
-                <div class="text">
-                    <div>Ricevi notifiche di nuovi messaggi</div>
-                    <a href="#">Attiva notifiche desktop</a>
-                </div>
-            </div>
-
-            <!-- Navbar-Search -->
-            <div class="navbar-search">
-                <div class="icon"><a href="#"><i class="fas fa-search"></i></a></div>
-                <div class="bar">
-                    <input 
-                        type="text" 
-                        placeholder="Cerca o inizia una nuova chat"
-                        v-model="userFilter"
-                        @keyup="userFiltered"
-                    >
-                </div>
-            </div>
-
-            <!-- Navbar-Content -->
-            <div class="navbar-content">
-                <ul>
-                    <li 
-                        v-for="(element, index) in contacts"
-                        @click="chat(index)"
-                        :class="{active: index == newIndex}"
-                        v-show="element.visible"
-                    >
-                        <img :src="`./img/avatar${element.avatar}.jpg`" :alt="`avatar${element.avatar}`">
-                        <span>{{ element.name }}</span>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- MAIN -->
-        <main class="main">
-
-            <!-- Main-Header -->
-            <div class="main-header">
-                <div class="user">
-                    <img :src="`./img/avatar${contacts[newIndex].avatar}.jpg`" alt="Avatar Chat">
+        
+                <!-- Navbar-Notification -->
+                <div
+                    class="navbar-notification"
+                    :class="{ backgroundColorNotification:darkModeVisible === true }"
+                >
+                    <div
+                        class="circle"
+                        :class="{ backgroundColorNotification:darkModeVisible === true }"
+                    ><i class="fas fa-bell-slash"></i></div>
                     <div class="text">
-                        <div>{{ contacts[newIndex].name }}</div>
-                        <div>{{ contacts[newIndex].access }}</div>
+                        <div>Ricevi notifiche di nuovi messaggi</div>
+                        <a href="#">Attiva notifiche desktop</a>
                     </div>
                 </div>
-                <div class="icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-paperclip"></i></a>
-                    <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                </div>
-            </div>
-
-            <!-- Main-Content -->
-            <div class="main-content" >
-
-                <!-- Messages -->
-                <div v-for="element in contacts[newIndex].messages">
-                    <div 
-                        class="sent-direction"  
-                        v-if="element.status == 'sent'"
-                    >
-                        <div class="sent-message">
-                            <div>{{element.message }}</div>
-                            <span>{{ element.date }}</span>
-                        </div>
-                    </div>
-                    <div 
-                        class="received-direction" 
-                        v-if="element.status == 'received'"
-                    >
-                        <div class="received-message">
-                            <div>{{element.message }}</div>
-                            <span>{{ element.date }}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Emoji -->
-                <div 
-                    class="container-emoji"
-                    v-show="emojiVisible"
+                <!-- Navbar-Search -->
+                <div
+                    class="navbar-search"
+                    :class="{ backgroundColor:darkModeVisible === true }"
                 >
-                    <div>Emoji</div>
-                    <div class="emoji">
+                    <div
+                        class="icon"
+                        :class="{ backgroundColor:darkModeVisible === true }"
+                    ><a href="#"><i class="fas fa-search"></i></a>
+                    </div>
+                    <div class="bar">
+                        <input
+                            type="text"
+                            placeholder="Cerca o inizia una nuova chat"
+                            :class="{ darkBackgroundColor:darkModeVisible === true }"
+                            v-model="userFilter"
+                            @keyup="userFiltered"
+                        >
+                    </div>
+                </div>
+                <!-- Navbar-Content -->
+                <div
+                    class="navbar-content"
+                    :class="{ darkBackgroundColor:darkModeVisible === true }"
+                >
+                    <ul>
+                        <li
+                            v-for="(element, index) in contacts"
+                            @click="chat(index)"
+                            :class="{active: index == newIndex}"
+                            v-show="element.visible"
+                        >
+                            <img :src="`./img/avatar${element.avatar}.jpg`" :alt="`avatar${element.avatar}`">
+                            <span>{{ element.name }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <!-- MAIN -->
+            <main class="main">
+                <!-- Main-Header -->
+                <div
+                    class="main-header"
+                    :class="{ backgroundColor:darkModeVisible === true }"
+                >
+                    <div class="user">
+                        <img :src="`./img/avatar${contacts[newIndex].avatar}.jpg`" alt="Avatar Chat">
+                        <div class="text">
+                            <div>{{ contacts[newIndex].name }}</div>
+                            <div>{{ contacts[newIndex].access }}</div>
+                        </div>
+                    </div>
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-search"></i></a>
+                        <a href="#"><i class="fas fa-paperclip"></i></a>
+                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                    </div>
+                </div>
+                <!-- Main-Content -->
+                <div
+                    class="main-content"
+                    :class="{ dark:darkModeVisible === true }"
+                >
+                    <!-- Messages -->
+                    <div v-for="element in contacts[newIndex].messages">
                         <div
-                            v-for="(element,index) in emoji"
-                            @click="addEmoji(index)"
-                        >{{element.code}}</div>
+                            class="sent-direction"
+                            v-if="element.status == 'sent'"
+                        >
+                            <div
+                                class="sent-message"
+                                :class="{ backgroundColorMessage:darkModeVisible === true }"
+                            >
+                                <div>{{element.message }}</div>
+                                <span :class="{ darkLatestAccess:darkModeVisible === true }">{{ element.date }}</span>
+                            </div>
+                        </div>
+                        <div
+                            class="received-direction"
+                            v-if="element.status == 'received'"
+                        >
+                            <div
+                                class="received-message"
+                                :class="{ backgroundColor:darkModeVisible === true }"
+                            >
+                                <div>{{element.message }}</div>
+                                <span :class="{ darkLatestAccess:darkModeVisible === true }">{{ element.date }}</span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Emoji -->
+                    <div
+                        class="container-emoji"
+                        :class="{ backgroundColor:darkModeVisible === true }"
+                        v-show="emojiVisible"
+                    >
+                        <div>Emoji</div>
+                        <div class="emoji">
+                            <div
+                                v-for="(element,index) in emoji"
+                                @click="addEmoji(index)"
+                            >{{element.code}}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Main-Footer -->
-            <div class="main-footer">
-                <i 
-                    class="far fa-smile"
-                    @click="emojiShow"
-                ></i>
-                <input 
-                    type="text" 
-                    placeholder="Scrivi un messaggio"
-                    v-model="newMessage"
-                    @keyup.enter="addMessage"    
+                <!-- Main-Footer -->
+                <div
+                    class="main-footer"
+                    :class="{ backgroundColor:darkModeVisible === true }"
                 >
-                <i 
-                    class="fas fa-paper-plane"
-                    @click="addMessage"
-                ></i>
-            </div>
-        </main>
+                    <i
+                        class="far fa-smile"
+                        @click="emojiShow"
+                    ></i>
+                    <input
+                        type="text"
+                        placeholder="Scrivi un messaggio"
+                        :class="{ darkBackgroundColor:darkModeVisible === true }"
+                        v-model="newMessage"
+                        @keyup.enter="addMessage"
+                    >
+                    <i
+                        class="fas fa-paper-plane"
+                        @click="addMessage"
+                    ></i>
+                </div>
+            </main>
+        </div>
     </div>
+    
 
     <!-- JS -->
     <!-- Day JS -->

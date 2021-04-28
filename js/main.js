@@ -177,7 +177,8 @@ const root = new Vue({
             {code: '😧'},
             {code: '🤢'},
             {code: '🤮'},
-        ]
+        ],
+        darkModeVisible: false,
     },
     methods: {
         // Selezione indice chat
@@ -237,6 +238,13 @@ const root = new Vue({
         // Aggiunge emoji nell'input della chat
         addEmoji(index) {
             this.newMessage += this.emoji[index].code
+        },
+        darkMode() {
+            if (this.darkModeVisible === false) {
+                this.darkModeVisible = true
+            } else {
+                this.darkModeVisible = false
+            } 
         }
     },
 });
