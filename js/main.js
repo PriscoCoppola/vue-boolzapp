@@ -5,9 +5,11 @@
 // Day JS Locale
 dayjs.locale('it');
 
+// Instanza VUE
 const root = new Vue({
     el: '#root',
     data: {
+        // Contatti
         contacts: [
             {
                 name: 'Michele',
@@ -93,26 +95,105 @@ const root = new Vue({
                 ],
             },
         ],
+        // Utente
         user: {
             name: 'Prisco',
             avatar: '_7'
         },
+        // Indice attivo
         newIndex: 0,
+        // Testo input chat
         newMessage: '',
+        // Testo input navbar
         userFilter: '',
+        // Ultimo accesso
         access: '',
+        // Emoji
+        emojiVisible: false,
+        emoji: [
+            {code: '😃'},
+            {code: '😅'},
+            {code: '😂'},
+            {code: '🤣'},
+            {code: '🥲'},
+            {code: '😊'},
+            {code: '😇'},
+            {code: '🙃'},
+            {code: '😉'},
+            {code: '😌'},
+            {code: '😍'},
+            {code: '🥰'},
+            {code: '😘'},
+            {code: '😋'},
+            {code: '😝'},
+            {code: '😜'},
+            {code: '🤪'},
+            {code: '🤨'},
+            {code: '🧐'},
+            {code: '🤓'},
+            {code: '😎'},
+            {code: '🥸'},
+            {code: '🤩'},
+            {code: '🥳'},
+            {code: '😏'},
+            {code: '😒'},
+            {code: '😞'},
+            {code: '😔'},
+            {code: '😟'},
+            {code: '😕'},
+            {code: '🙁'},
+            {code: '😣'},
+            {code: '😖'},
+            {code: '😫'},
+            {code: '😩'},
+            {code: '🥺'},
+            {code: '😢'},
+            {code: '😭'},
+            {code: '😤'},
+            {code: '😠'},
+            {code: '😡'},
+            {code: '🤬'},
+            {code: '🤯'},
+            {code: '😳'},
+            {code: '🥵'},
+            {code: '🥶'},
+            {code: '😱'},
+            {code: '😨'},
+            {code: '😰'},
+            {code: '😥'},
+            {code: '😓'},
+            {code: '🤗'},
+            {code: '🤔'},
+            {code: '🤭'},
+            {code: '🤫'},
+            {code: '🤥'},
+            {code: '😶'},
+            {code: '😐'},
+            {code: '😑'},
+            {code: '😬'},
+            {code: '🙄'},
+            {code: '😯'},
+            {code: '😦'},
+            {code: '😧'},
+            {code: '🤢'},
+            {code: '🤮'},
+        ]
     },
     methods: {
+        // Selezione indice chat
         chat (index) {
             this.newIndex = index
             console.log(dayjs().format('DD/MM/YYYY'))
         },
+        // Aggiunta messaggio e risposto nella chat selezionata
         addMessage() {
             this.contacts[this.newIndex].messages.push({
                 date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 message: this.newMessage,
                 status: 'sent'
             })
+
+            this.emojiVisible = false
 
             if (this.newMessage.toLowerCase() === 'come va?') {
                 setTimeout(() => {
@@ -127,7 +208,7 @@ const root = new Vue({
                 setTimeout(() => {
                     this.contacts[this.newIndex].messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        message: 'Ok',
+                        message: 'Va bene',
                         status: 'received'
                     })
                     this.contacts[this.newIndex].access = `Ultimo accesso oggi alle ${dayjs().format('HH:mm')}`
@@ -135,6 +216,7 @@ const root = new Vue({
             }
             this.newMessage = '';
         },
+        // Filtraggio delle chat nella navbar
         userFiltered() {
             this.contacts.forEach((element) => {
                if (element.name.toLowerCase().includes(this.userFilter)) {
@@ -143,6 +225,18 @@ const root = new Vue({
                    element.visible = false
                }
             })
+        },
+        // Mostra o nasconde le emoji
+        emojiShow() {
+            if (this.emojiVisible === false) {
+                this.emojiVisible = true
+            } else {
+                this.emojiVisible = false
+            }
+        },
+        // Aggiunge emoji nell'input della chat
+        addEmoji(index) {
+            this.newMessage += this.emoji[index].code
         }
     },
 });

@@ -1,3 +1,4 @@
+/* GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +24,6 @@ body {
     background-color:rgba(0, 0, 0, .2);
 }
 
-/* General */
 .navbar-header,
 .main-header {
     display: flex;
@@ -54,7 +54,7 @@ body {
     cursor: pointer;
 }
 
-/* Layout */
+/* LAYOUT */
 .container {
     display: flex;
     width: 80%;
@@ -75,8 +75,8 @@ body {
     flex-basis: 65%;
 }
 
-/* Navigation */
-
+/* NAVBAR */
+/* Navbar-Notification */
 .navbar-notification {
     display: flex;
     padding: 15px;
@@ -108,6 +108,7 @@ body {
     font-size: 14px;
 }
 
+/* Navbar-Search */
 .navbar-search {
     display: flex;
     padding: 5px;
@@ -144,6 +145,7 @@ body {
     box-shadow: 0 0 1px rgba(0, 0, 0, .1);
 }
 
+/* Navbar-Content */
 .navbar-content {
     flex-grow: 1;
     background-color: #fff;
@@ -168,19 +170,23 @@ body {
     border-radius: 50%;
 }
 
-/* Main */
+/* MAIN */
+/* Main-Header */
 .main-header .user .text div:last-child {
     font-size: 12px;
     color: #919699;
 }
 
+/* Main-Content */
 .main-content {
     flex-grow: 1;
     padding: 30px 70px 0 70px;
     background-image: url(../img/mine.jpg);
     overflow-y: auto;
+    position: relative;
 }
 
+/* Messages */
 .main-content .sent-direction {
     display: flex;
     justify-content: end;
@@ -220,6 +226,32 @@ body {
     position: relative;
 }
 
+/* Emoji */
+.container-emoji {
+    width: 100%;
+    height: 200px;
+    padding: 30px;
+    background-color: #f4f0ed;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.container-emoji div {
+    padding: 0 0 10px 10px;
+}
+
+.emoji {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.emoji div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Main-Footer */
 .main-footer {
     display: flex;
     align-items: center;
@@ -240,4 +272,5 @@ body {
     padding: 0 20px;
     color: #bababa;
     font-size: 20px;
+    cursor: pointer;
 }

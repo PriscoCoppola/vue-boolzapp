@@ -17,10 +17,13 @@
 </head>
 <body>
     
+    <!-- VUE -->
     <div id="root" class="container">
 
-        <!-- Navbar -->
+        <!-- NAVBAR -->
         <aside class="navbar">
+            
+            <!-- Navbar-Header -->
             <div class="navbar-header">
                 <div class="user">
                     <img :src="`./img/avatar${user.avatar}.jpg`" alt="Avatar User">
@@ -32,6 +35,8 @@
                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                 </div>
             </div>
+            
+            <!-- Navbar-Notification -->
             <div class="navbar-notification">
                 <div class="circle"><i class="fas fa-bell-slash"></i></div>
                 <div class="text">
@@ -39,6 +44,8 @@
                     <a href="#">Attiva notifiche desktop</a>
                 </div>
             </div>
+
+            <!-- Navbar-Search -->
             <div class="navbar-search">
                 <div class="icon"><a href="#"><i class="fas fa-search"></i></a></div>
                 <div class="bar">
@@ -50,6 +57,8 @@
                     >
                 </div>
             </div>
+
+            <!-- Navbar-Content -->
             <div class="navbar-content">
                 <ul>
                     <li 
@@ -65,8 +74,10 @@
             </div>
         </aside>
 
-        <!-- Main -->
+        <!-- MAIN -->
         <main class="main">
+
+            <!-- Main-Header -->
             <div class="main-header">
                 <div class="user">
                     <img :src="`./img/avatar${contacts[newIndex].avatar}.jpg`" alt="Avatar Chat">
@@ -81,7 +92,11 @@
                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                 </div>
             </div>
+
+            <!-- Main-Content -->
             <div class="main-content" >
+
+                <!-- Messages -->
                 <div v-for="element in contacts[newIndex].messages">
                     <div 
                         class="sent-direction"  
@@ -102,16 +117,38 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Emoji -->
+                <div 
+                    class="container-emoji"
+                    v-show="emojiVisible"
+                >
+                    <div>Emoji</div>
+                    <div class="emoji">
+                        <div
+                            v-for="(element,index) in emoji"
+                            @click="addEmoji(index)"
+                        >{{element.code}}</div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Main-Footer -->
             <div class="main-footer">
-                <i class="far fa-smile"></i>
+                <i 
+                    class="far fa-smile"
+                    @click="emojiShow"
+                ></i>
                 <input 
                     type="text" 
                     placeholder="Scrivi un messaggio"
                     v-model="newMessage"
                     @keyup.enter="addMessage"    
                 >
-                <i class="fas fa-microphone"></i>
+                <i 
+                    class="fas fa-paper-plane"
+                    @click="addMessage"
+                ></i>
             </div>
         </main>
     </div>
